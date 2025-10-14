@@ -15,7 +15,7 @@ import {
     Icon,
     Divider,
 } from "@chakra-ui/react";
-import { FaStar, FaQuoteLeft, FaUsers, FaUserTie, FaClock, FaHeadset, FaRocket, FaSpark } from "react-icons/fa";
+import { FaStar, FaQuoteLeft, FaUsers, FaUserTie, FaClock, FaHeadset, FaRocket, FaBolt } from "react-icons/fa";
 
 import StatsSection from "../components/StatsSection";
 import ServiceCard from "../components/ServiceCard";
@@ -401,7 +401,7 @@ export default function Home() {
                             <Text fontSize="sm" fontWeight="semibold" color="white">
                                  Trusted by 100+ Companies
                             </Text>
-                            <Icon as={FaSpark} color="yellow.300" boxSize={4} />
+                            <Icon as={FaBolt} color="yellow.300" boxSize={4} />
                         </HStack>
 
                         {/* Enhanced main heading */}
