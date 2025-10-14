@@ -17,9 +17,9 @@ import {
 } from "@chakra-ui/react";
 import { FaStar, FaQuoteLeft, FaUsers, FaUserTie, FaClock, FaHeadset, FaRocket, FaBolt } from "react-icons/fa";
 
-import StatsSection from "../components/StatsSection";
+/* import StatsSection from "../components/StatsSection"; */
 import ServiceCard from "../components/ServiceCard";
-import TestimonialCard from "../components/TestimonialCard";
+/* import TestimonialCard from "../components/TestimonialCard"; */
 import Link from "next/link";
 
 // Use string keys instead of icon components here
