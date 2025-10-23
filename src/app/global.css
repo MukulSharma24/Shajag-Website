@@ -1,0 +1,52 @@
+/* Hero Section Background with CSS Custom Properties */
+:root {
+    --hero-bg-start: #E89B7F;
+    --hero-bg-end: #E8A88F;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, var(--hero-bg-start) 0%, var(--hero-bg-end) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+/* Color Palette Options - Pick One */
+/* Light Peachy (Current) */
+.hero-section.color-peachy {
+    --hero-bg-start: #E89B7F;
+    --hero-bg-end: #E8A88F;
+}
+
+/* Deep Burnt Orange */
+.hero-section.color-burnt-orange {
+    --hero-bg-start: #C85A17;
+    --hero-bg-end: #D97E3A;
+}
+
+/* Rich Rust Orange */
+.hero-section.color-rust {
+    --hero-bg-start: #B8471A;
+    --hero-bg-end: #D66D28;
+}
+
+/* Warm Coral */
+.hero-section.color-coral {
+    --hero-bg-start: #E07856;
+    --hero-bg-end: #F08970;
+}
+
+/* Sunset Orange */
+.hero-section.color-sunset {
+    --hero-bg-start: #D46D4F;
+    --hero-bg-end: #E8915C;
+}
+
+/* Deep Terracotta */
+.hero-section.color-terracotta {
+    --hero-bg-start: #A84C38;
+    --hero-bg-end: #C85A4A;
+}
