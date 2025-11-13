@@ -1,7 +1,7 @@
-/* Hero Section Background with CSS Custom Properties */
+/* Hero Section Background with Light Orange CSS Custom Properties */
 :root {
-    --hero-bg-start: #E89B7F;
-    --hero-bg-end: #E8A88F;
+    --hero-bg-start: #ff8026;
+    --hero-bg-end: #FF7A3D;
 }
 
 .hero-section {
@@ -14,39 +14,302 @@
     color: white;
 }
 
-/* Color Palette Options - Pick One */
-/* Light Peachy (Current) */
-.hero-section.color-peachy {
-    --hero-bg-start: #E89B7F;
-    --hero-bg-end: #E8A88F;
+/* ===================================================================
+   LIGHT ORANGE COLOR PALETTE OPTIONS
+   Choose the variant that best matches your brand!
+   =================================================================== */
+
+/* 1. Vibrant Light Orange (DEFAULT - Matches React Components) */
+.hero-section.color-vibrant-light {
+    --hero-bg-start: #fb8639;
+    --hero-bg-end: #FF7A3D;
 }
 
-/* Deep Burnt Orange */
-.hero-section.color-burnt-orange {
-    --hero-bg-start: #C85A17;
-    --hero-bg-end: #D97E3A;
+/* 2. Peachy Light Orange */
+.hero-section.color-peachy-light {
+    --hero-bg-start: #FFB380;
+    --hero-bg-end: #FF9D5C;
 }
 
-/* Rich Rust Orange */
-.hero-section.color-rust {
-    --hero-bg-start: #B8471A;
-    --hero-bg-end: #D66D28;
+/* 3. Soft Light Orange */
+.hero-section.color-soft-light {
+    --hero-bg-start: #FFAB73;
+    --hero-bg-end: #FF8C4D;
 }
 
-/* Warm Coral */
-.hero-section.color-coral {
-    --hero-bg-start: #E07856;
-    --hero-bg-end: #F08970;
+/* 4. Bright Light Orange */
+.hero-section.color-bright-light {
+    --hero-bg-start: #FFA366;
+    --hero-bg-end: #FF8247;
 }
 
-/* Sunset Orange */
-.hero-section.color-sunset {
-    --hero-bg-start: #D46D4F;
-    --hero-bg-end: #E8915C;
+/* 5. Warm Light Orange */
+.hero-section.color-warm-light {
+    --hero-bg-start: #FFB088;
+    --hero-bg-end: #FFA06B;
 }
 
-/* Deep Terracotta */
-.hero-section.color-terracotta {
-    --hero-bg-start: #A84C38;
-    --hero-bg-end: #C85A4A;
+/* 6. Sunset Light Orange */
+.hero-section.color-sunset-light {
+    --hero-bg-start: #FF9966;
+    --hero-bg-end: #FF8247;
+}
+
+/* ===================================================================
+   ADDITIONAL COMPONENTS STYLING
+   =================================================================== */
+
+/* Buttons */
+.btn-primary {
+    background: white;
+    color: #FF7A3D;
+    padding: 16px 40px;
+    font-size: 17px;
+    border-radius: 50px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+    padding: 16px 40px;
+    font-size: 17px;
+    border-radius: 50px;
+    font-weight: 700;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px);
+}
+
+/* Badge Styling */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: glow 2s infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Text Highlights */
+.text-highlight {
+    background: linear-gradient(135deg, #FFF5E6 0%, #FFE4CC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+}
+
+.text-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: rgba(255, 245, 230, 0.3);
+    transform: skewY(-2deg);
+    z-index: -1;
+}
+
+/* Stats Section */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.stat-number {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #FFF 0%, #FFE4CC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+/* Carousel Navigation Dots */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 60px;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+}
+
+.carousel-dot.active {
+    width: 48px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.carousel-dot:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(1.2);
+}
+
+/* ===================================================================
+   RESPONSIVE DESIGN
+   =================================================================== */
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 60px 20px;
+    }
+
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        padding: 30px 15px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 14px 32px;
+        font-size: 15px;
+    }
+}
+
+/* ===================================================================
+   FLOATING SHAPES ANIMATIONS
+   =================================================================== */
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+.floating-shape-1 {
+    top: 15%;
+    right: 10%;
+    width: 200px;
+    height: 200px;
+}
+
+.floating-shape-2 {
+    bottom: 20%;
+    left: 8%;
+    width: 150px;
+    height: 150px;
+    border-radius: 30px;
+    animation-delay: 1s;
+    transform: rotate(45deg);
+}
+
+.floating-shape-3 {
+    top: 40%;
+    left: 15%;
+    width: 100px;
+    height: 100px;
+    animation-delay: 2s;
+}
+
+/* ===================================================================
+   BACKGROUND PATTERN
+   =================================================================== */
+
+.background-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    background-image:
+            radial-gradient(circle at 20% 30%, white 1px, transparent 1px),
+            radial-gradient(circle at 80% 70%, white 1px, transparent 1px),
+            radial-gradient(circle at 40% 80%, white 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+}
+
+/* ===================================================================
+   GRADIENT OVERLAY
+   =================================================================== */
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.1) 100%);
+    pointer-events: none;
 }

@@ -15,52 +15,11 @@ import {
     Icon,
     Divider,
 } from "@chakra-ui/react";
-import { FaStar, FaQuoteLeft, FaUsers, FaUserTie, FaClock, FaHeadset, FaRocket, FaSpark } from "react-icons/fa";
-
-import StatsSection from "../components/StatsSection";
-import ServiceCard from "../components/ServiceCard";
-import TestimonialCard from "../components/TestimonialCard";
+import { FaStar, FaQuoteLeft, FaUsers, FaUserTie, FaClock, FaHeadset } from "react-icons/fa";
 import Link from "next/link";
-
-// Use string keys instead of icon components here
-const services = [
-    {
-        iconName: "BarChart3",
-        title: "Data Visualization",
-        description:
-            "Transform complex data into compelling visual narratives that drive business insights and strategic decision-making.",
-    },
-    {
-        iconName: "Cloud",
-        title: "Cloud Infrastructure",
-        description:
-            "Comprehensive cloud infrastructure solutions that ensure scalability, security, and cost-effectiveness for modern enterprises.",
-    },
-    {
-        iconName: "Cpu",
-        title: "IoT Solutions",
-        description:
-            "Connect, monitor, and manage smart devices to optimize operations and enhance user experiences across industries.",
-    },
-    {
-        iconName: "Megaphone",
-        title: "Digital Marketing",
-        description:
-            "Strategic digital marketing campaigns powered by AI and analytics that maximize reach, engagement, and conversion rates.",
-    },
-    {
-        iconName: "Brain",
-        title: "AI & Analytics",
-        description:
-            "Advanced data processing and analytics solutions for real-time business intelligence and predictive insights.",
-    },
-    {
-        iconName: "Settings",
-        title: "Custom Solutions",
-        description:
-            "Deep domain expertise across multiple industries, delivering tailored solutions that address unique sector challenges.",
-    },
-];
+import { motion } from "framer-motion";
+import EnhancedHeroCarousel from "../components/Enhancedherocarousel";
+import ServiceCarousel from "../components/Servicecarousel";
 
 const testimonials = [
     {
@@ -68,205 +27,211 @@ const testimonials = [
         author: "Rajesh Kumar",
         company: "CTO, TechCorp India",
         avatar: "RK",
-        color: "orange.500"
+        color: "orange.400"
     },
     {
         text: "The IoT solution implemented by Shajag has revolutionized our patient monitoring system. Real-time data insights have improved our response times dramatically.",
         author: "Dr. Priya Sharma",
         company: "IT Director, HealthFirst Hospitals",
         avatar: "PS",
-        color: "blue.500"
+        color: "orange.500"
     },
     {
         text: "Their Industry 4.0 solutions have transformed our production line. Predictive maintenance has reduced downtime by 50% and saved us millions in potential losses.",
-        author: "Michael Chen",
+        author: "Vikram",
         company: "Operations Manager, Global Manufacturing Ltd",
-        avatar: "MC",
-        color: "green.500"
+        avatar: "V",
+        color: "orange.300"
     },
     {
         text: "Shajag's expertise in regulatory compliance and data security is exceptional. They helped us achieve 100% compliance while modernizing our entire digital infrastructure.",
-        author: "Sarah Johnson",
+        author: "Sarah Hussain",
         company: "Head of Technology, FinanceSecure Bank",
-        avatar: "SJ",
-        color: "purple.500"
+        avatar: "SH",
+        color: "orange.600"
     },
     {
         text: "The e-learning platform developed by Shajag has increased student engagement by 70%. Their team understood our vision perfectly and delivered beyond expectations.",
         author: "Dr. Amit Patel",
         company: "CEO, EduTech Solutions",
         avatar: "AP",
-        color: "teal.500"
+        color: "orange.400"
+    },
+    {
+        text: "Working with Shajag on our digital transformation was a game-changer. Their innovative approach and dedicated support helped us scale our operations efficiently across multiple regions.",
+        author: "Charan Singh Kaur",
+        company: "VP Operations, RetailTech Solutions",
+        avatar: "CK",
+        color: "orange.500"
     },
 ];
 
-// Enhanced Stats Card Component
-const EnhancedStatsCard = ({ value, label, icon, gradient, delay }) => (
+// Enhanced Stats Card
+interface EnhancedStatsCardProps {
+    value: number | string;
+    label: string;
+    icon: React.ElementType;
+    gradient: string;
+}
+
+const EnhancedStatsCard: React.FC<EnhancedStatsCardProps> = ({ value, label, icon, gradient }) => (
     <Card
         bg="white"
-        shadow="2xl"
-        rounded="3xl"
+        shadow="xl"
+        rounded="2xl"
         p={8}
         position="relative"
-        border="1px solid"
-        borderColor="orange.100"
-        _hover={{
-            transform: "translateY(-12px) scale(1.02)",
-            shadow: "3xl",
-            borderColor: "orange.300",
-        }}
-        transition={`all 0.4s ease ${delay}s`}
         overflow="hidden"
-        minH="220px"
+        border="1px solid"
+        borderColor="gray.100"
+        _hover={{
+            transform: "translateY(-8px)",
+            shadow: "2xl",
+            borderColor: "orange.200"
+        }}
+        transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
     >
-        {/* Animated gradient background */}
         <Box
             position="absolute"
             top={0}
-            left={0}
             right={0}
-            bottom={0}
+            w="120px"
+            h="120px"
             bgGradient={gradient}
-            opacity={0.03}
-            _hover={{ opacity: 0.08 }}
-            transition="opacity 0.3s ease"
+            opacity={0.05}
+            borderRadius="full"
+            transform="translate(30%, -30%)"
         />
 
-        {/* Floating decorative circles */}
-        <Box
-            position="absolute"
-            top="-20px"
-            right="-20px"
-            w="80px"
-            h="80px"
-            borderRadius="full"
-            bg="orange.50"
-            opacity={0.6}
-        />
-        <Box
-            position="absolute"
-            bottom="-10px"
-            left="-10px"
-            w="40px"
-            h="40px"
-            borderRadius="full"
-            bg="orange.100"
-            opacity={0.4}
-        />
-
-        <CardBody p={0} position="relative" zIndex={1}>
-            <VStack spacing={6} align="center" textAlign="center">
-                {/* Icon container */}
+        <CardBody p={0} position="relative">
+            <VStack spacing={5} align="center">
                 <Box
-                    w="70px"
-                    h="70px"
-                    borderRadius="2xl"
-                    bgGradient="linear(135deg, orange.400, red.500)"
+                    w="60px"
+                    h="60px"
+                    borderRadius="xl"
+                    bgGradient="linear(135deg, #FF9D5C, #FF8C4D)"
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-                    shadow="lg"
-                    _hover={{ transform: "rotate(5deg) scale(1.1)" }}
-                    transition="transform 0.3s ease"
+                    boxShadow="0 8px 16px rgba(255, 157, 92, 0.25)"
                 >
-                    <Icon as={icon} color="white" boxSize={8} />
+                    <Icon as={icon} color="white" boxSize={7} />
                 </Box>
 
-                {/* Stats number with enhanced styling */}
                 <VStack spacing={2}>
                     <Heading
-                        size="3xl"
-                        bgGradient="linear(135deg, orange.500, red.600)"
+                        size="2xl"
+                        bgGradient="linear(135deg, #FF9D5C, #FF7A3D)"
                         bgClip="text"
-                        fontWeight="900"
-                        letterSpacing="-2px"
+                        fontWeight="800"
                     >
                         {value}
                     </Heading>
                     <Text
-                        fontSize="lg"
+                        fontSize="md"
                         color="gray.600"
                         fontWeight="600"
                         textTransform="uppercase"
-                        letterSpacing="1px"
+                        letterSpacing="wider"
                     >
                         {label}
                     </Text>
                 </VStack>
-
-                {/* Decorative line */}
-                <Box
-                    w="60px"
-                    h="3px"
-                    bgGradient="linear(to-r, orange.400, red.500)"
-                    rounded="full"
-                />
             </VStack>
         </CardBody>
     </Card>
 );
 
-// Enhanced Testimonial Card Component
-const EnhancedTestimonialCard = ({ text, author, company, avatar, color }) => (
+// Enhanced Testimonial Card with Animations
+interface EnhancedTestimonialCardProps {
+    text: string;
+    author: string;
+    company: string;
+    avatar: string;
+    color: string;
+}
+
+const EnhancedTestimonialCard = ({ text, author, company, avatar, color }: EnhancedTestimonialCardProps) => (
     <Card
         bg="white"
-        shadow="2xl"
-        rounded="3xl"
+        shadow="xl"
+        rounded="2xl"
         p={8}
         position="relative"
+        overflow="hidden"
         border="1px solid"
         borderColor="gray.100"
         _hover={{
-            transform: "translateY(-8px)",
-            shadow: "3xl",
-            borderColor: color,
+            transform: "translateY(-10px) scale(1.02)",
+            shadow: "2xl",
+            borderColor: "orange.300"
         }}
-        transition="all 0.3s ease"
-        overflow="hidden"
+        transition="all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)"
     >
-        {/* Decorative gradient top border */}
+        {/* Animated Top Border */}
         <Box
             position="absolute"
             top={0}
             left={0}
             right={0}
             h="4px"
-            bgGradient={`linear(to-r, ${color}, orange.400)`}
+            bgGradient={`linear(to-r, ${color}, orange.300)`}
+            sx={{
+                '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: '-100%',
+                    width: '100%',
+                    height: '100%',
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+                    animation: 'shimmer 3s infinite',
+                }
+            }}
         />
 
-        {/* Quote icon */}
-        <Box position="absolute" top={6} right={6}>
-            <Icon as={FaQuoteLeft} color="gray.200" boxSize={8} />
+        {/* Quote Icon with Pulse */}
+        <Box
+            position="absolute"
+            top={6}
+            right={6}
+            opacity={0.1}
+            sx={{
+                animation: 'pulse 3s ease-in-out infinite'
+            }}
+        >
+            <Icon as={FaQuoteLeft} boxSize={12} color="gray.400" />
         </Box>
 
         <CardBody p={0}>
             <VStack spacing={6} align="stretch">
-                {/* Testimonial text */}
                 <Text
                     fontSize="lg"
-                    lineHeight="1.8"
+                    lineHeight="tall"
                     color="gray.700"
                     fontStyle="italic"
                     position="relative"
-                    zIndex={1}
                 >
                     "{text}"
                 </Text>
 
                 <Divider borderColor="gray.200" />
 
-                {/* Author section */}
                 <HStack spacing={4}>
-                    <Avatar
-                        name={author}
-                        bg={color}
-                        color="white"
-                        size="lg"
-                        fontWeight="bold"
-                        fontSize="lg"
+                    <Box
+                        as={motion.div}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        style={{ transitionDuration: "0.3s" }}
+                    >
+                        <Avatar
+                            name={author}
+                            bg={color}
+                            color="white"
+                            size="lg"
+                            fontWeight="bold"
+                        />
+                    </Box>
 
-
-                    />
 
                     <VStack align="start" spacing={1} flex={1}>
                         <Text fontWeight="bold" fontSize="lg" color="gray.900">
@@ -276,23 +241,54 @@ const EnhancedTestimonialCard = ({ text, author, company, avatar, color }) => (
                             {company}
                         </Text>
 
-                        {/* 5-star rating */}
                         <HStack spacing={1} pt={1}>
                             {[...Array(5)].map((_, i) => (
-                                <Icon
+                                <Box
                                     key={i}
-                                    as={FaStar}
-                                    color="yellow.400"
-                                    boxSize={4}
-                                />
+                                    as={motion.div}
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    style={{ transition: `0.3s ${i * 0.1}s` }}
+                                    whileHover={{ scale: 1.3 }}
+                                >
+                                    <Icon
+                                        as={FaStar}
+                                        color="yellow.400"
+                                        boxSize={4}
+                                    />
+                                </Box>
                             ))}
                         </HStack>
+
                     </VStack>
                 </HStack>
             </VStack>
         </CardBody>
+
+        <style jsx global>{`
+            @keyframes shimmer {
+                0% {
+                    left: -100%;
+                }
+                100% {
+                    left: 100%;
+                }
+            }
+            
+            @keyframes pulse {
+                0%, 100% {
+                    opacity: 0.1;
+                }
+                50% {
+                    opacity: 0.15;
+                }
+            }
+        `}</style>
     </Card>
 );
+
+// Motion Box wrapper component
+const MotionBox = motion(Box);
 
 export default function Home() {
     const statsData = [
@@ -300,387 +296,309 @@ export default function Home() {
             value: "100+",
             label: "Happy Clients",
             icon: FaUsers,
-            gradient: "linear(135deg, orange.400, red.500)",
-            delay: 0
+            gradient: "linear(135deg, orange.300, orange.500)",
         },
         {
             value: "50+",
             label: "Expert Team",
             icon: FaUserTie,
-            gradient: "linear(135deg, red.400, pink.500)",
-            delay: 0.1
+            gradient: "linear(135deg, orange.400, orange.600)",
         },
         {
             value: "7",
             label: "Years Experience",
             icon: FaClock,
-            gradient: "linear(135deg, orange.500, yellow.500)",
-            delay: 0.2
+            gradient: "linear(135deg, orange.300, orange.500)",
         },
         {
             value: "24/7",
             label: "Support",
             icon: FaHeadset,
-            gradient: "linear(135deg, red.500, orange.600)",
-            delay: 0.3
+            gradient: "linear(135deg, orange.400, orange.600)",
         },
     ];
 
     return (
         <>
-            {/* Enhanced Hero Section */}
-            <Box
-                as="section"
-                position="relative"
-                bgGradient="linear(135deg,rgba(230, 154, 131, 0.88) 0%,rgba(200, 94, 41, 0.92) 100%)"
-                color="white"
-                py={{ base: 20, md: 32 }}
-                overflow="hidden"
-            >
-                {/* Floating geometric shapes */}
-                <Box
-                    position="absolute"
-                    top="10%"
-                    right="15%"
-                    w="120px"
-                    h="120px"
-                    borderRadius="full"
-                    bg="whiteAlpha.100"
-                    animation="float 6s ease-in-out infinite"
-                />
-                <Box
-                    position="absolute"
-                    top="60%"
-                    left="10%"
-                    w="80px"
-                    h="80px"
-                    borderRadius="20px"
-                    bg="whiteAlpha.80"
-                    transform="rotate(45deg)"
-                    animation="float 4s ease-in-out infinite reverse"
-                />
-                <Box
-                    position="absolute"
-                    bottom="20%"
-                    right="20%"
-                    w="60px"
-                    h="60px"
-                    borderRadius="full"
-                    bg="whiteAlpha.60"
-                    animation="float 5s ease-in-out infinite"
-                />
+            {/* Enhanced Hero Carousel Section */}
+            <EnhancedHeroCarousel />
 
-                {/* Animated background pattern */}
-                <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    opacity={0.1}
-                    backgroundImage="radial-gradient(circle at 20% 50%, white 2px, transparent 2px), radial-gradient(circle at 80% 50%, white 2px, transparent 2px)"
-                    backgroundSize="100px 100px"
-                    animation="drift 20s linear infinite"
-                />
-
-                <Container maxW="7xl" textAlign="center" position="relative" zIndex={1}>
-                    <VStack spacing={8} maxW="4xl" mx="auto">
-                        {/* Animated badge */}
-                        <HStack
-                            bg="whiteAlpha.200"
-                            px={6}
-                            py={3}
-                            rounded="full"
-                            backdropFilter="blur(10px)"
-                            border="1px solid"
-                            borderColor="whiteAlpha.300"
-                            _hover={{ transform: "scale(1.05)" }}
-                            transition="transform 0.3s ease"
-                        >
-                            <Icon as={FaRocket} color="white" boxSize={4} />
-                            <Text fontSize="sm" fontWeight="semibold" color="white">
-                                 Trusted by 100+ Companies
-                            </Text>
-                            <Icon as={FaSpark} color="yellow.300" boxSize={4} />
-                        </HStack>
-
-                        {/* Enhanced main heading */}
-                        <Heading
-                            as="h1"
-                            fontSize={{ base: "4xl", md: "6xl", lg: "7xl" }}
-                            lineHeight="shorter"
-                            fontWeight="900"
-                            letterSpacing="-2px"
-                            position="relative"
-                        >
-                            <Text
-                                as="span"
-                                position="relative"
-                                _before={{
-                                    content: '""',
-                                    position: "absolute",
-                                    top: "50%",
-                                    left: "-10px",
-                                    right: "-10px",
-                                    height: "30%",
-                                    bg: "whiteAlpha.200",
-                                    transform: "translateY(-50%) skew(-12deg)",
-                                    zIndex: -1,
-                                }}
-                            >
-                                Transforming
-                            </Text>{" "}
-                            <Text as="span" color="yellow.200">
-                                Businesses
-                            </Text>
-                            <br />
-                            Through{" "}
-                            <Text
-                                as="span"
-                                bgGradient="linear(to-r, yellow.200, orange.200)"
-                                bgClip="text"
-                            >
-                                Innovative Technology
-                            </Text>
-                            <br />
-                            Solutions
-                        </Heading>
-
-                        {/* Enhanced description */}
-                        <Text
-                            fontSize={{ base: "lg", md: "xl" }}
-                            color="whiteAlpha.900"
-                            maxW="3xl"
-                            lineHeight="1.8"
-                            fontWeight="400"
-                        >
-                            Empower your organization with cutting-edge technology that drives
-                            growth, efficiency, and competitive advantage in the digital era.
-                            Join 100+ companies who trust us to deliver exceptional results.
-                        </Text>
-
-                        {/* Enhanced CTA section */}
-                        <VStack spacing={6} pt={4}>
-                            <HStack spacing={6} flexWrap="wrap" justify="center">
-                                <Button
-                                    as={Link}
-                                    href="/about"
-                                    size="lg"
-                                    px={10}
-                                    py={4}
-                                    rounded="full"
-                                    bg="white"
-                                    color="orange.600"
-                                    fontWeight="bold"
-                                    fontSize="lg"
-                                    shadow="2xl"
-                                    _hover={{
-                                        transform: "translateY(-3px) scale(1.05)",
-                                        shadow: "3xl",
-                                        bg: "gray.50"
-                                    }}
-                                    transition="all 0.3s ease"
-                                    leftIcon={<Icon as={FaRocket} />}
-                                >
-                                    Explore More
-                                </Button>
-
-                                <Button
-                                    as={Link}
-                                    href="/contact"
-                                    size="lg"
-                                    px={10}
-                                    py={4}
-                                    rounded="full"
-                                    variant="outline"
-                                    borderColor="whiteAlpha.400"
-                                    color="white"
-                                    fontWeight="bold"
-                                    fontSize="lg"
-                                    backdropFilter="blur(10px)"
-                                    _hover={{
-                                        bg: "whiteAlpha.200",
-                                        borderColor: "whiteAlpha.600",
-                                        transform: "translateY(-3px) scale(1.05)"
-                                    }}
-                                    transition="all 0.3s ease"
-                                >
-                                    Request Demo
-                                </Button>
-                            </HStack>
-
-                            {/* Trust indicators */}
-                            <HStack spacing={8} pt={4} opacity={0.8}>
-                                <VStack spacing={1}>
-                                    <Text fontSize="2xl" fontWeight="bold">200+</Text>
-                                    <Text fontSize="xs" textTransform="uppercase" letterSpacing="wider">Projects</Text>
-                                </VStack>
-                                <Box w="1px" h="40px" bg="whiteAlpha.400" />
-                                <VStack spacing={1}>
-                                    <Text fontSize="2xl" fontWeight="bold">98%</Text>
-                                    <Text fontSize="xs" textTransform="uppercase" letterSpacing="wider">Success Rate</Text>
-                                </VStack>
-                                <Box w="1px" h="40px" bg="whiteAlpha.400" />
-                                <VStack spacing={1}>
-                                    <Text fontSize="2xl" fontWeight="bold">10+</Text>
-                                    <Text fontSize="xs" textTransform="uppercase" letterSpacing="wider">Countries</Text>
-                                </VStack>
-                            </HStack>
-                        </VStack>
-                    </VStack>
-                </Container>
-
-                {/* CSS animations */}
-                <style jsx>{`
-                    @keyframes float {
-                        0%, 100% { transform: translateY(0px); }
-                        50% { transform: translateY(-20px); }
-                    }
-                    @keyframes drift {
-                        0% { transform: translateX(0px); }
-                        100% { transform: translateX(-100px); }
-                    }
-                `}</style>
-            </Box>
-
-            {/* Enhanced Stats Section */}
+            {/* Stats Section */}
             <Box
                 as="section"
                 bg="gray.50"
-                py={{ base: 16, md: 24 }}
+                py={{ base: 16, md: 20 }}
                 position="relative"
-                overflow="hidden"
             >
-                {/* Background decorative elements */}
-                <Box
-                    position="absolute"
-                    top="10%"
-                    right="10%"
-                    w="300px"
-                    h="300px"
-                    borderRadius="full"
-                    bgGradient="radial(circle, orange.100 0%, transparent 70%)"
-                    opacity={0.4}
-                />
-                <Box
-                    position="absolute"
-                    bottom="10%"
-                    left="5%"
-                    w="200px"
-                    h="200px"
-                    borderRadius="full"
-                    bgGradient="radial(circle, red.100 0%, transparent 70%)"
-                    opacity={0.3}
-                />
-
-                <Container maxW="7xl" position="relative">
-                    {/* Section header */}
-                    <VStack spacing={4} textAlign="center" mb={16}>
-                        <Heading
-                            size="xl"
-                            bgGradient="linear(135deg, orange.600, red.600)"
-                            bgClip="text"
+                <Container maxW="7xl">
+                    <VStack spacing={4} textAlign="center" mb={12}>
+                        <Text
+                            fontSize="sm"
                             fontWeight="bold"
+                            color="orange.500"
+                            textTransform="uppercase"
+                            letterSpacing="wider"
                         >
                             Our Track Record
+                        </Text>
+                        <Heading
+                            size="xl"
+                            color="gray.900"
+                            maxW="2xl"
+                        >
+                            Numbers That Speak for Themselves
                         </Heading>
                         <Text fontSize="lg" color="gray.600" maxW="2xl">
-                            Numbers that speak to our commitment to excellence and client satisfaction
+                            Proven excellence in delivering technology solutions that drive real business results
                         </Text>
                     </VStack>
 
                     <SimpleGrid
                         columns={{ base: 1, sm: 2, lg: 4 }}
-                        spacing={8}
+                        spacing={6}
                         maxW="6xl"
                         mx="auto"
                     >
-                        {statsData.map((stat, index) => (
+                        {statsData.map((stat) => (
                             <EnhancedStatsCard
                                 key={stat.label}
                                 value={stat.value}
                                 label={stat.label}
                                 icon={stat.icon}
                                 gradient={stat.gradient}
-                                delay={stat.delay}
                             />
                         ))}
                     </SimpleGrid>
                 </Container>
             </Box>
 
-            {/* Services Section */}
-            <Box as="section" bg="white" py={{ base: 12, md: 20 }}>
-                <Container maxW="7xl">
-                    <VStack spacing={6} textAlign="center" mb={12}>
-                        <Heading size="xl">Our Services</Heading>
-                        <Text fontSize="lg" color="gray.600" maxW="3xl">
-                            From data visualization to cloud infrastructure, we deliver
-                            end-to-end technology solutions tailored to your business needs.
-                        </Text>
-                    </VStack>
+            {/* Service Carousel Section - NEW */}
+            <ServiceCarousel />
 
-                    <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={8} py={8}>
-                        {services.map((service, i) => (
-                            <ServiceCard
-                                key={i}
-                                iconName={service.iconName}
-                                title={service.title}
-                                description={service.description}
-                                link="/services"
-                            />
-                        ))}
-                    </SimpleGrid>
-                </Container>
-            </Box>
-
-            {/* Enhanced Testimonials Section */}
+            {/* Testimonials Section */}
             <Box
                 as="section"
                 bg="gray.50"
-                py={{ base: 16, md: 24 }}
+                py={{ base: 16, md: 20 }}
                 position="relative"
             >
-                {/* Background decoration */}
-                <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    bgGradient="radial(circle at 30% 50%, orange.50 0%, transparent 50%)"
-                    opacity={0.6}
-                />
-
-                <Container maxW="7xl" position="relative">
-                    <VStack spacing={6} textAlign="center" mb={16}>
-                        <Heading size="2xl" color="gray.900">
+                <Container maxW="7xl">
+                    <VStack spacing={4} textAlign="center" mb={12}>
+                        <Text
+                            fontSize="sm"
+                            fontWeight="bold"
+                            color="orange.500"
+                            textTransform="uppercase"
+                            letterSpacing="wider"
+                        >
+                            Client Stories
+                        </Text>
+                        <Heading size="xl" color="gray.900">
                             What Our Clients Say
                         </Heading>
-                        <Text fontSize="xl" color="gray.600" maxW="4xl" lineHeight="1.8">
+                        <Text fontSize="lg" color="gray.600" maxW="3xl">
                             Don't just take our word for it. See how we've transformed
-                            businesses and delivered exceptional results.
+                            businesses and delivered exceptional results
                         </Text>
                     </VStack>
 
                     <SimpleGrid
                         columns={{ base: 1, lg: 2 }}
-                        spacing={10}
+                        spacing={8}
                         maxW="6xl"
                         mx="auto"
                     >
                         {testimonials.map((testimonial, index) => (
-                            <EnhancedTestimonialCard
+                            <MotionBox
                                 key={index}
-                                text={testimonial.text}
-                                author={testimonial.author}
-                                company={testimonial.company}
-                                avatar={testimonial.avatar}
-                                color={testimonial.color}
-                            />
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: index * 0.15,
+                                    ease: [0.6, -0.05, 0.01, 0.99]
+                                }}
+                            >
+                                <EnhancedTestimonialCard
+                                    text={testimonial.text}
+                                    author={testimonial.author}
+                                    company={testimonial.company}
+                                    avatar={testimonial.avatar}
+                                    color={testimonial.color}
+                                />
+                            </MotionBox>
                         ))}
                     </SimpleGrid>
                 </Container>
+            </Box>
+
+            {/* CTA Section with Wave Effects & Staggered Animations */}
+            <Box
+                as="section"
+                position="relative"
+                overflow="hidden"
+            >
+                {/* Top Wave Divider */}
+                <Box
+                    position="absolute"
+                    top="-1px"
+                    left="0"
+                    width="100%"
+                    overflow="hidden"
+                    lineHeight="0"
+                    transform="rotate(180deg)"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 1440 320"
+                        preserveAspectRatio="none"
+                        style={{
+                            display: 'block',
+                            width: '100%',
+                            height: '80px'
+                        }}
+                    >
+                        <path
+                            fill="#f3f4f6"
+                            fillOpacity="1"
+                            d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                        ></path>
+                    </svg>
+                </Box>
+
+                {/* CTA Content */}
+                <Box
+                    bgGradient="linear(135deg, #FF9D5C 0%, #FF8C4D 50%, #FF7A3D 100%)"
+                    py={{ base: 20, md: 28 }}
+                    position="relative"
+                >
+                    {/* Background Pattern */}
+                    <Box
+                        position="absolute"
+                        top="0"
+                        left="0"
+                        right="0"
+                        bottom="0"
+                        opacity={0.1}
+                        backgroundImage="radial-gradient(circle at 20% 50%, white 2px, transparent 2px)"
+                        backgroundSize="50px 50px"
+                    />
+
+                    <Container maxW="5xl" position="relative">
+                        <VStack spacing={8} textAlign="center">
+                            {/* Animated Heading with Scale & Fade */}
+                            <MotionBox
+                                initial={{ opacity: 0, y: 60, scale: 0.8 }}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{
+                                    duration: 0.8,
+                                    ease: [0.6, -0.05, 0.01, 0.99],
+                                    delay: 0.2
+                                }}
+                            >
+                                <Heading
+                                    size="2xl"
+                                    color="white"
+                                    lineHeight="shorter"
+                                >
+                                    Ready to Transform Your Business?
+                                </Heading>
+                            </MotionBox>
+
+                            {/* Animated Description */}
+                            <MotionBox
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{
+                                    duration: 0.7,
+                                    ease: [0.6, -0.05, 0.01, 0.99],
+                                    delay: 0.4
+                                }}
+                            >
+                                <Text
+                                    fontSize="xl"
+                                    color="whiteAlpha.900"
+                                    maxW="3xl"
+                                    lineHeight="tall"
+                                >
+                                    Join 100+ companies who have already transformed their operations
+                                    with our innovative technology solutions
+                                </Text>
+                            </MotionBox>
+
+                            {/* Animated Buttons Container */}
+                            <MotionBox
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{
+                                    duration: 0.6,
+                                    ease: [0.6, -0.05, 0.01, 0.99],
+                                    delay: 0.6
+                                }}
+                            >
+                                <HStack spacing={4} pt={4} flexWrap="wrap" justify="center">
+                                    <MotionBox
+                                        whileHover={{ scale: 1.08, y: -5 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <Button
+                                            as={Link}
+                                            href="/contact"
+                                            size="lg"
+                                            h="56px"
+                                            px={10}
+                                            bg="white"
+                                            color="orange.500"
+                                            fontWeight="bold"
+                                            fontSize="lg"
+                                            rounded="full"
+                                            boxShadow="0 8px 24px rgba(0, 0, 0, 0.2)"
+                                            _hover={{
+                                                boxShadow: "0 12px 32px rgba(0, 0, 0, 0.3)"
+                                            }}
+                                            transition="all 0.3s ease"
+                                        >
+                                            Get Started Today
+                                        </Button>
+                                    </MotionBox>
+
+                                    <MotionBox
+                                        whileHover={{ scale: 1.08, y: -5 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <Button
+                                            as={Link}
+                                            href="/services"
+                                            size="lg"
+                                            h="56px"
+                                            px={10}
+                                            variant="outline"
+                                            borderColor="whiteAlpha.500"
+                                            borderWidth="2px"
+                                            color="white"
+                                            fontWeight="bold"
+                                            fontSize="lg"
+                                            rounded="full"
+                                            _hover={{
+                                                bg: "whiteAlpha.200",
+                                                borderColor: "whiteAlpha.700"
+                                            }}
+                                            transition="all 0.3s ease"
+                                        >
+                                            View Our Services
+                                        </Button>
+                                    </MotionBox>
+                                </HStack>
+                            </MotionBox>
+                        </VStack>
+                    </Container>
+                </Box>
             </Box>
         </>
     );

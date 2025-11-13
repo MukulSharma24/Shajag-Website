@@ -30,7 +30,7 @@ interface ServiceCardProps {
     iconName: string;
     title: string;
     description: string;
-    link?: string; // allow an external link prop
+    link?: string;
 }
 
 const iconMap: Record<string, LucideIcon> = {
@@ -61,7 +61,7 @@ const ServiceCard = ({ iconName, title, description, link }: ServiceCardProps) =
             bg={cardBg}
             borderRadius="2xl"
             boxShadow="md"
-            p={6}
+            p={8}
             whileHover={{ y: -6, scale: 1.04, boxShadow: "xl" }}
             transition={{ duration: 0.25 }}
             borderTop="4px solid"
@@ -69,14 +69,14 @@ const ServiceCard = ({ iconName, title, description, link }: ServiceCardProps) =
             display="flex"
             flexDirection="column"
             alignItems="center"
-            minH="320px"
+            minH="400px"
             justifyContent="flex-start"
             textAlign="center"
         >
             {/* Icon */}
-            <HStack justify="center" mb={4}>
+            <HStack justify="center" mb={6}>
                 <Box
-                    boxSize={{ base: "60px", md: "72px" }}
+                    boxSize={{ base: "72px", md: "84px" }}
                     bg={iconBg}
                     borderRadius="full"
                     display="flex"
@@ -84,17 +84,17 @@ const ServiceCard = ({ iconName, title, description, link }: ServiceCardProps) =
                     justifyContent="center"
                     color={iconColor}
                 >
-                    {Icon && <Icon size={40} />}
+                    {Icon && <Icon size={48} />}
                 </Box>
             </HStack>
 
             {/* Title */}
-            <Heading size="md" color="gray.900" mb={2}>
+            <Heading size="lg" color="gray.900" mb={4}>
                 {title}
             </Heading>
 
             {/* Description */}
-            <Text color="gray.600" mb={4} flex={1}>
+            <Text color="gray.600" fontSize="md" mb={6} flex={1} lineHeight="tall">
                 {description}
             </Text>
 
@@ -104,6 +104,7 @@ const ServiceCard = ({ iconName, title, description, link }: ServiceCardProps) =
                 href={link || "/services"}
                 color="orange.600"
                 fontWeight="semibold"
+                fontSize="md"
                 _hover={{ color: "orange.700", textDecoration: "underline" }}
                 mt="auto"
             >
